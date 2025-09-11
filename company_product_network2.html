@@ -1,0 +1,119 @@
+
+<!-- saved from url=(0052)file:///C:/Users/gavri/company_product_network2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
+            <script src="./company_product_network2_files/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+</head><body><center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    
+
+
+    
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"><div class="vis-network" tabindex="0" style="position: relative; overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;"><canvas width="1884" style="position: relative; touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;" height="716"></canvas></div></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "lightblue", "font": {"color": "white"}, "id": "Au10tix", "label": "Au10tix", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Comply Advantage", "label": "Comply Advantage", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Facephi", "label": "Facephi", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Feedzai", "label": "Feedzai", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Fenergo", "label": "Fenergo", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Flagright", "label": "Flagright", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Featurespace", "label": "Featurespace", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "GBG", "label": "GBG", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Hawk", "label": "Hawk", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "IDNow", "label": "IDNow", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Incode", "label": "Incode", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Jumio", "label": "Jumio", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Mitek", "label": "Mitek", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Napier", "label": "Napier", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "NICE Actimize", "label": "NICE Actimize", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Ondato", "label": "Ondato", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Onfido", "label": "Onfido", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Persona", "label": "Persona", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Salv", "label": "Salv", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Sardine", "label": "Sardine", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "SEON", "label": "SEON", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Shufti Pro", "label": "Shufti Pro", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Signicat", "label": "Signicat", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Socure", "label": "Socure", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Thetaray", "label": "Thetaray", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Trulioo", "label": "Trulioo", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Unit21", "label": "Unit21", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Veriff", "label": "Veriff", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Yoti", "label": "Yoti", "shape": "dot", "size": 15}, {"color": "lightblue", "font": {"color": "white"}, "id": "Detected", "label": "Detected", "shape": "dot", "size": 15}, {"color": "#800000", "font": {"color": "white"}, "id": "KYC", "label": "KYC", "shape": "box", "size": 25}, {"color": "#800000", "font": {"color": "white"}, "id": "KYB", "label": "KYB", "shape": "box", "size": 25}, {"color": "#800000", "font": {"color": "white"}, "id": "TM", "label": "TM", "shape": "box", "size": 25}, {"color": "#800000", "font": {"color": "white"}, "id": "FP", "label": "FP", "shape": "box", "size": 25}, {"color": "#B35050", "font": {"color": "white"}, "id": "Age verification", "label": "Age verification", "shape": "box", "size": 15}, {"color": "#B35050", "font": {"color": "white"}, "id": "AML Screening", "label": "AML Screening", "shape": "box", "size": 15}, {"color": "#B35050", "font": {"color": "white"}, "id": "Biometrics\u0026Liveness", "label": "Biometrics\u0026Liveness", "shape": "box", "size": 15}, {"color": "#B35050", "font": {"color": "white"}, "id": "Digital ID", "label": "Digital ID", "shape": "box", "size": 15}, {"color": "#B35050", "font": {"color": "white"}, "id": "Non-doc\u0026database checks", "label": "Non-doc\u0026database checks", "shape": "box", "size": 15}, {"color": "#B35050", "font": {"color": "white"}, "id": "Risk assessment", "label": "Risk assessment", "shape": "box", "size": 15}, {"color": "#B35050", "font": {"color": "white"}, "id": "Video verification", "label": "Video verification", "shape": "box", "size": 15}]);
+                  edges = new vis.DataSet([{"from": "Au10tix", "to": "KYC"}, {"from": "Au10tix", "to": "KYB"}, {"from": "Au10tix", "to": "Age verification"}, {"from": "Au10tix", "to": "AML Screening"}, {"from": "Au10tix", "to": "Biometrics\u0026Liveness"}, {"from": "Au10tix", "to": "Digital ID"}, {"from": "Au10tix", "to": "Video verification"}, {"from": "Comply Advantage", "to": "TM"}, {"from": "Comply Advantage", "to": "AML Screening"}, {"from": "Comply Advantage", "to": "Risk assessment"}, {"from": "Facephi", "to": "KYC"}, {"from": "Facephi", "to": "FP"}, {"from": "Facephi", "to": "Age verification"}, {"from": "Facephi", "to": "Biometrics\u0026Liveness"}, {"from": "Feedzai", "to": "TM"}, {"from": "Feedzai", "to": "FP"}, {"from": "Feedzai", "to": "AML Screening"}, {"from": "Feedzai", "to": "Risk assessment"}, {"from": "Fenergo", "to": "TM"}, {"from": "Fenergo", "to": "AML Screening"}, {"from": "Fenergo", "to": "Risk assessment"}, {"from": "Flagright", "to": "TM"}, {"from": "Flagright", "to": "AML Screening"}, {"from": "Flagright", "to": "Risk assessment"}, {"from": "Featurespace", "to": "TM"}, {"from": "Featurespace", "to": "FP"}, {"from": "GBG", "to": "KYC"}, {"from": "GBG", "to": "KYB"}, {"from": "GBG", "to": "TM"}, {"from": "GBG", "to": "AML Screening"}, {"from": "GBG", "to": "Biometrics\u0026Liveness"}, {"from": "GBG", "to": "Non-doc\u0026database checks"}, {"from": "GBG", "to": "Risk assessment"}, {"from": "Hawk", "to": "TM"}, {"from": "Hawk", "to": "FP"}, {"from": "Hawk", "to": "AML Screening"}, {"from": "Hawk", "to": "Risk assessment"}, {"from": "IDNow", "to": "KYC"}, {"from": "IDNow", "to": "Video verification"}, {"from": "Incode", "to": "KYC"}, {"from": "Incode", "to": "KYB"}, {"from": "Incode", "to": "Age verification"}, {"from": "Incode", "to": "AML Screening"}, {"from": "Incode", "to": "Biometrics\u0026Liveness"}, {"from": "Incode", "to": "Non-doc\u0026database checks"}, {"from": "Jumio", "to": "KYC"}, {"from": "Jumio", "to": "TM"}, {"from": "Jumio", "to": "AML Screening"}, {"from": "Jumio", "to": "Biometrics\u0026Liveness"}, {"from": "Jumio", "to": "Non-doc\u0026database checks"}, {"from": "Jumio", "to": "Risk assessment"}, {"from": "Jumio", "to": "Video verification"}, {"from": "Mitek", "to": "KYC"}, {"from": "Mitek", "to": "FP"}, {"from": "Mitek", "to": "Age verification"}, {"from": "Mitek", "to": "Biometrics\u0026Liveness"}, {"from": "Mitek", "to": "Digital ID"}, {"from": "Napier", "to": "TM"}, {"from": "Napier", "to": "AML Screening"}, {"from": "Napier", "to": "Risk assessment"}, {"from": "NICE Actimize", "to": "TM"}, {"from": "NICE Actimize", "to": "FP"}, {"from": "NICE Actimize", "to": "AML Screening"}, {"from": "NICE Actimize", "to": "Risk assessment"}, {"from": "Ondato", "to": "KYC"}, {"from": "Ondato", "to": "KYB"}, {"from": "Ondato", "to": "TM"}, {"from": "Ondato", "to": "Age verification"}, {"from": "Ondato", "to": "AML Screening"}, {"from": "Ondato", "to": "Biometrics\u0026Liveness"}, {"from": "Ondato", "to": "Risk assessment"}, {"from": "Ondato", "to": "Video verification"}, {"from": "Onfido", "to": "KYC"}, {"from": "Onfido", "to": "FP"}, {"from": "Onfido", "to": "Biometrics\u0026Liveness"}, {"from": "Onfido", "to": "Non-doc\u0026database checks"}, {"from": "Persona", "to": "KYC"}, {"from": "Persona", "to": "KYB"}, {"from": "Persona", "to": "Age verification"}, {"from": "Persona", "to": "AML Screening"}, {"from": "Persona", "to": "Biometrics\u0026Liveness"}, {"from": "Persona", "to": "Digital ID"}, {"from": "Persona", "to": "Non-doc\u0026database checks"}, {"from": "Persona", "to": "Risk assessment"}, {"from": "Salv", "to": "TM"}, {"from": "Salv", "to": "AML Screening"}, {"from": "Salv", "to": "Risk assessment"}, {"from": "Sardine", "to": "KYC"}, {"from": "Sardine", "to": "KYB"}, {"from": "Sardine", "to": "TM"}, {"from": "Sardine", "to": "FP"}, {"from": "Sardine", "to": "AML Screening"}, {"from": "SEON", "to": "TM"}, {"from": "SEON", "to": "FP"}, {"from": "SEON", "to": "AML Screening"}, {"from": "Shufti Pro", "to": "KYC"}, {"from": "Shufti Pro", "to": "KYB"}, {"from": "Shufti Pro", "to": "Age verification"}, {"from": "Shufti Pro", "to": "AML Screening"}, {"from": "Shufti Pro", "to": "Biometrics\u0026Liveness"}, {"from": "Shufti Pro", "to": "Digital ID"}, {"from": "Shufti Pro", "to": "Non-doc\u0026database checks"}, {"from": "Shufti Pro", "to": "Risk assessment"}, {"from": "Shufti Pro", "to": "Video verification"}, {"from": "Signicat", "to": "KYC"}, {"from": "Signicat", "to": "Biometrics\u0026Liveness"}, {"from": "Signicat", "to": "Digital ID"}, {"from": "Signicat", "to": "Non-doc\u0026database checks"}, {"from": "Socure", "to": "KYC"}, {"from": "Socure", "to": "FP"}, {"from": "Socure", "to": "AML Screening"}, {"from": "Socure", "to": "Non-doc\u0026database checks"}, {"from": "Socure", "to": "Risk assessment"}, {"from": "Thetaray", "to": "TM"}, {"from": "Thetaray", "to": "AML Screening"}, {"from": "Thetaray", "to": "Risk assessment"}, {"from": "Trulioo", "to": "KYC"}, {"from": "Trulioo", "to": "KYB"}, {"from": "Trulioo", "to": "FP"}, {"from": "Trulioo", "to": "AML Screening"}, {"from": "Trulioo", "to": "Digital ID"}, {"from": "Trulioo", "to": "Non-doc\u0026database checks"}, {"from": "Unit21", "to": "TM"}, {"from": "Unit21", "to": "FP"}, {"from": "Unit21", "to": "AML Screening"}, {"from": "Unit21", "to": "Risk assessment"}, {"from": "Veriff", "to": "KYC"}, {"from": "Veriff", "to": "FP"}, {"from": "Veriff", "to": "Age verification"}, {"from": "Veriff", "to": "AML Screening"}, {"from": "Veriff", "to": "Biometrics\u0026Liveness"}, {"from": "Veriff", "to": "Non-doc\u0026database checks"}, {"from": "Veriff", "to": "Risk assessment"}, {"from": "Yoti", "to": "KYC"}, {"from": "Yoti", "to": "Age verification"}, {"from": "Yoti", "to": "Biometrics\u0026Liveness"}, {"from": "Yoti", "to": "Digital ID"}, {"from": "Detected", "to": "KYB"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"borderWidth": 2, "borderWidthSelected": 4, "color": {"highlight": {"background": "orange", "border": "yellow"}}}, "edges": {"color": {"highlight": "yellow"}, "width": 1, "selectionWidth": 3}, "interaction": {"hover": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+</body></html>
